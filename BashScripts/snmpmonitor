@@ -1,0 +1,101 @@
+#!/bin/bash
+PYTHON="/usr/bin/python3.7"
+PYTHONPATH="$HOME/Documents/.Hidden/:$PATH"
+help(){
+    echo "--add-interface       Añade interfaz al monitoreo (snmpmonitor --add <ip> <community>)"
+    echo "--add-rack            Añade rack"
+    echo "--down-interfaces     Muestra las interfaces que se encuentran abajo actualmente"
+    echo "--help                Muestra este mensaje"
+    echo "--interfaces          Muestra las interfaces actuales en la lista de monitoreo y el rack donde se encuentran"
+    echo "--log                 Muestra las últimas 50 entradas del log"
+    echo "--racks               Muestra los racks guardados"
+    echo "--remove-interface    Elimina interfaz del monitoreo"
+    echo "--remove-rack         Elimina rack y todas las interfaces que lo contienen"
+    echo "--start               Inicia el proceso de monitoreo"
+    echo "--status              Muestra si el monitoreo se encuentra activo actualmente"
+    echo "--stop                Detiene el proceso de monitoreo"
+}
+
+off(){
+    raspi-gpio set 0 op dl
+    raspi-gpio set 1 op dl
+    raspi-gpio set 2 op dl
+    raspi-gpio set 3 op dl
+    raspi-gpio set 4 op dl
+    raspi-gpio set 5 op dl
+    raspi-gpio set 6 op dl
+    raspi-gpio set 7 op dl
+    raspi-gpio set 8 op dl
+    raspi-gpio set 9 op dl
+
+    raspi-gpio set 10 op dl
+    raspi-gpio set 11 op dl
+    raspi-gpio set 12 op dl
+    raspi-gpio set 13 op dl
+    raspi-gpio set 14 op dl
+    raspi-gpio set 15 op dl
+    raspi-gpio set 16 op dl
+    raspi-gpio set 17 op dl
+    raspi-gpio set 18 op dl
+    raspi-gpio set 19 op dl
+
+    raspi-gpio set 20 op dl
+    raspi-gpio set 21 op dl
+    raspi-gpio set 22 op dl
+    raspi-gpio set 23 op dl
+    raspi-gpio set 24 op dl
+    raspi-gpio set 25 op dl
+    raspi-gpio set 26 op dl
+    raspi-gpio set 27 op dl
+    raspi-gpio set 28 op dl
+} 
+
+case $1 in
+    "--add-interface")  
+        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/add.py $2 $3
+    ;;
+    "--add-rack")
+        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Racks/add.py
+    ;;
+    "--down-interfaces")
+        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Logs/down.py
+    ;;
+    "--help")
+        help
+    ;;
+    "--interfaces")
+        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/active.py
+    ;;
+    "--log")
+        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Logs/log.py
+    ;;
+    "--racks")
+        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Racks/active.py
+    ;;
+    "--remove-interface")
+        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/remove.py
+    ;;
+    "--remove-rack")
+        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Racks/remove.py
+    ;;
+    "--start")
+        printf "Activo desde `date`\n" > /tmp/running
+        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/start.py  >> /tmp/snmpmonitor_log
+        printf "Detenido a las `date`\n" > /tmp/running
+    ;;
+    "--status")
+        if [[ ! -f /tmp/running ]]; then
+            printf "Detenido\n" > /tmp/running
+        fi
+        cat /tmp/running
+    ;;
+    "--stop")
+        pkill -f start.py
+        printf "Detenido\n a las `date`\n" > /tmp/running
+        off
+    ;;
+    *)
+        help
+        
+    ;;
+esac

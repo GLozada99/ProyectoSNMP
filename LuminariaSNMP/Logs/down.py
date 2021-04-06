@@ -1,0 +1,14 @@
+from os import environ
+from LuminariaSNMP.Database.DB import Database_Controler
+from beautifultable import BeautifulTable
+
+db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
+
+log = db.get_down_interfaces()
+db.close()
+table = BeautifulTable()
+table.columns.header = ["IP", "Interfaz", "Rack/Gabinete", "Hora de caída"]
+for entry in log: 
+    table.rows.append([entry[0], entry[1], entry[2], str(entry[3])])
+
+print(table)
