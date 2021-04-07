@@ -94,9 +94,7 @@ class Database_Controler():
         if not self.cursor.fetchall():
             self.cursor.execute(
             'INSERT INTO status_log (IP,INTERFACE,DOWNTIME) VALUES (?, ?, ?)',(ip,interface,datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-            self.connection.commit()
-        
-            
+            self.connection.commit()            
     
     def insert_up_log(self,ip,interface):
         self.cursor.execute(

@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
+wait_time = 5
 class LED_Strip:
-    wait_time = 30
     def __init__(self,red,green,blue):
         self.blue_flag = False      
         self.red = red
@@ -43,7 +43,7 @@ class LED_Strip:
             self.no_error_time = time.time()
             self.blue_flag = False
         
-        if time.time() - self.no_error_time > 30:
+        if time.time() - self.no_error_time > wait_time:
             self.no_error_time = 0
             duty_blue = 0
         else:

@@ -3,7 +3,7 @@ import subprocess
 
 def walk(host, version='2c',community='public',oid=''):
     data = []
-    process = subprocess.Popen(['snmpwalk','-Os','-c',community,'-v',version,host,'-Ci',oid], stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
+    process = subprocess.Popen(['snmpwalk','-Os','-c',community,'-v',version,host,'-Ci',oid, '-t', '0.1'], stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
     while True:
         output = process.stdout.readline()
         data.append(output.strip())
@@ -20,11 +20,11 @@ def index_by_interface(data,name):
     for dat in data:
         try:
             oid, if_name = dat.split('=')
-            if_name = if_name.split()[-1]
+            if_name = if_name.split('STRING:')[-1].strip()
             if if_name.strip() == name.strip():
                 number = oid.split('.')[-1]
                 return number
-        except:
+        except: 
             pass  
 
 def status_by_index(data,number):
@@ -39,7 +39,7 @@ def status_by_index(data,number):
             pass
 
 def get_status(ip,interface,comm):
-    if_name_mib = 'IF-MIB::ifName'
+    if_name_mib = 'IF-MIB::ifDescr'
     if_status_mib = 'IF-MIB::ifOperStatus'
     ip = ip.strip()
     interface = interface.strip()
@@ -51,8 +51,8 @@ def get_status(ip,interface,comm):
     index = index_by_interface(name_data,interface)
     status = status_by_index(status_data,index)
     
+    print(index, interface, status)
     result = False
     if status != None:
         result = True if status.strip() == 'up' else False
-    
     return result

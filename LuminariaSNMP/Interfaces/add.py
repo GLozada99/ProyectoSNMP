@@ -10,12 +10,15 @@ try:
     if len(sys.argv) == 3:
         ip = sys.argv[1]
         community = sys.argv[2]
-        if_name_mib = 'IF-MIB::ifName'
+        if_name_mib = 'IF-MIB::ifDescr'
         interfaces = walk(host=ip,community=community,oid=if_name_mib)
         interfaces = list(filter(None, interfaces))[1:]
         if interfaces: 
             for i,inter in enumerate(interfaces):
-                print(i,inter.split(':')[-1].strip())
+                try:
+                    print(i,inter.split('STRING:')[-1].strip())
+                except:
+                    print(i,inter.split('INTEGER:')[-1].strip())
 
             answer = ''
             while type(answer) == str:
@@ -24,8 +27,10 @@ try:
                     answer = int(answer)
                 except:
                     pass
-            
-            interface = interfaces[answer].split(':')[-1].strip()
+            try:
+                interface = interfaces[answer].split('STRING:')[-1].strip()
+            except:
+                interface = interfaces[answer].split('INTEGER:')[-1].strip()
             ID, info = create_get_rack(True)
             
             if ID is None or info is None:
