@@ -90,25 +90,19 @@ class Database_Controler():
             sys.exit(1)
     
     def insert_down_log(self,ip,interface):
-        try:
-            self.cursor.execute('SELECT * FROM status_log WHERE IP = ? AND interface=? AND UPTIME IS NULL',(ip,interface))
-            if not self.cursor.fetchall():
-                self.cursor.execute(
-                'INSERT INTO status_log (IP,INTERFACE,DOWNTIME) VALUES (?, ?, ?)',(ip,interface,datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-                self.connection.commit()
-        except mariadb.Error as e:
-            print(f"Error insertando log a la base de datos {self.database} : {e}")
-            sys.exit(1)
+        self.cursor.execute('SELECT * FROM status_log WHERE IP = ? AND interface=? AND UPTIME IS NULL',(ip,interface))
+        if not self.cursor.fetchall():
+            self.cursor.execute(
+            'INSERT INTO status_log (IP,INTERFACE,DOWNTIME) VALUES (?, ?, ?)',(ip,interface,datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+            self.connection.commit()
+        
+            
     
     def insert_up_log(self,ip,interface):
-        try:
-            self.cursor.execute(
-            'UPDATE status_log SET UPTIME=? WHERE IP = ? AND interface = ? AND UPTIME IS NULL',
-            (datetime.now().strftime('%Y-%m-%d %H:%M:%S'),ip,interface))
-            self.connection.commit()
-        except mariadb.Error as e:
-            print(f"Error insertando log a la base de datos {self.database} : {e}")
-            sys.exit(1)
+        self.cursor.execute(
+        'UPDATE status_log SET UPTIME=? WHERE IP = ? AND interface = ? AND  UPTIME IS NULL',
+        (datetime.now().strftime('%Y-%m-%d %H:%M:%S'),ip,interface))
+        self.connection.commit()
 
     def get_log(self):
         try:
@@ -142,4 +136,6 @@ class Database_Controler():
             sys.exit(1)
 
     def close(self):
+        #print(dir(self.connection))
+        #print(self.connection.ping())
         self.connection.close()

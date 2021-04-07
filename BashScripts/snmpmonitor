@@ -72,6 +72,10 @@ case $1 in
     "--racks")
         $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Racks/active.py
     ;;
+    "--reload")
+        snmpmonitor --stop
+        snmpmonitor --start
+    ;;
     "--remove-interface")
         $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/remove.py
     ;;
@@ -80,18 +84,18 @@ case $1 in
     ;;
     "--start")
         printf "Activo desde `date`\n" > /tmp/running
-        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/start.py  >> /tmp/snmpmonitor_log
-        printf "Detenido a las `date`\n" > /tmp/running
+        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/start.py >> /tmp/snmpmonitor_log
+        printf "Detenido en `date`\n" > /tmp/running
     ;;
     "--status")
         if [[ ! -f /tmp/running ]]; then
-            printf "Detenido\n" > /tmp/running
+            printf "No iniciado\n" > /tmp/running
         fi
         cat /tmp/running
     ;;
     "--stop")
         pkill -f start.py
-        printf "Detenido\n a las `date`\n" > /tmp/running
+        printf "Detenido en `date`\n" > /tmp/running
         off
     ;;
     *)

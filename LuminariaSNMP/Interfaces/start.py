@@ -5,6 +5,7 @@ from LuminariaSNMP.Database.DB import Database_Controler
 from LuminariaSNMP.Interfaces.status import get_status
 from LuminariaSNMP.LEDStrip.strip import LED_Strip
 from LuminariaSNMP.LEDStrip.offpins import turn_off
+import mariadb
 
 db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
 try:
@@ -32,21 +33,31 @@ try:
     interfaces = db.get_interfaces()
 
     down_interfaces = set([(inter[0], inter[1], inter[3]) for inter in db.get_down_interfaces()])
-
     while interfaces:
         for ip, interface, community, rack in interfaces:
             status = get_status(ip, interface, community)
-            if not status:
-                strip_lis[rack].error()
-                down_interfaces.add((ip, interface, rack))
-                good_racks.discard(rack)
-                db.insert_down_log(ip, interface)
-                print(f'Interface {interface} on host {ip} is down')
-            elif (ip, interface, rack) in down_interfaces:
-                down_interfaces.remove(((ip, interface, rack)))
-                if rack not in chain(*down_interfaces):
-                    good_racks.add(rack)
-                db.insert_up_log(ip, interface)
+            try:
+                if not status:
+                    strip_lis[rack].error()
+                    down_interfaces.add((ip, interface, rack))
+                    good_racks.discard(rack)
+                    insert_up_down = False
+                    db.insert_down_log(ip, interface)
+                    print(f'Interface {interface} on host {ip} is down')
+                elif (ip, interface, rack) in down_interfaces:
+                    down_interfaces.remove(((ip, interface, rack)))
+                    if rack not in chain(*down_interfaces):
+                        good_racks.add(rack)
+                    insert_up_down = True
+                    db.insert_up_log(ip, interface)
+            except mariadb.Error as e:
+                print('Hola')
+                print(f"Error insertando log a la base de datos: {e}",'\n Se realizó una nueva conexión')
+                db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
+                if insert_up_down:
+                    db.insert_up_log(ip, interface)
+                else:
+                    db.insert_down_log(ip, interface)
                 
         for rack in good_racks:
             strip_lis[rack].all_good()
