@@ -21,7 +21,8 @@ class Monitor(Daemon):
                 r = int(rack[3])
                 g = int(rack[4])
                 b = int(rack[5])
-                strip = LED_Strip(r,g,b)
+                d = int(rack[6])
+                strip = LED_Strip(r,g,b,d)
                 strip.start_pwm(10000)
                 strip_lis[name] = strip
                 strip.white()
@@ -40,6 +41,7 @@ class Monitor(Daemon):
                 for ip, interface, community, rack in interfaces:
                     status = get_status(ip, interface, community)
                     try:
+
                         if not status:
                             strip_lis[rack].error()
                             down_interfaces.add((ip, interface, rack))
@@ -54,7 +56,6 @@ class Monitor(Daemon):
                             insert_up_down = True
                             db.insert_up_log(ip, interface)
                     except mariadb.Error as e:
-                        print('Hola')
                         print(f"Error insertando log a la base de datos: {e}",'\n Se realizó una nueva conexión')
                         db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
                         if insert_up_down:

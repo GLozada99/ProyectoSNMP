@@ -34,7 +34,8 @@ def create_get_rack(choose):
             if response.upper() == 'Y':
                 info = input('Introduzca el nombre/información del rack a agregar:').strip()
                 R, G, B = [int(x) for x in input('Introduzca pines a controlar los colores en formato [R G B]:').strip().split()]
-                ID = db.insert_rack(info, R, G, B)
+                D = int(input('Introuzca el pin destinado al monitoreo de la puerta:').strip())
+                ID = db.insert_rack(info, R, G, B, D)
             else:
                 ID = None
                 info = None

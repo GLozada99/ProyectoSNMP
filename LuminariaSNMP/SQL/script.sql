@@ -31,11 +31,15 @@ CREATE TABLE racks(
     RED INTEGER,
     GREEN INTEGER,
     BLUE INTEGER,
+    DOOR INTEGER,
     CONSTRAINT PK_ID_RACKS PRIMARY KEY (ID),
     CONSTRAINT UC_INFO_RACKS UNIQUE (INFO),
     CONSTRAINT R_G_diff CHECK (RED<>GREEN),
     CONSTRAINT R_B_diff CHECK (RED<>BLUE),
-    CONSTRAINT B_G_diff CHECK (BLUE<>GREEN)
+    CONSTRAINT B_G_diff CHECK (BLUE<>GREEN),
+    CONSTRAINT D_G_diff CHECK (DOOR<>GREEN),
+    CONSTRAINT D_B_diff CHECK (DOOR<>BLUE),
+    CONSTRAINT D_R_diff CHECK (DOOR<>RED)
 );
 
 CREATE TABLE racks_interfaces(
@@ -47,13 +51,13 @@ CREATE TABLE racks_interfaces(
     CONSTRAINT FK_RACKS_INTERFACES_Rack FOREIGN KEY (ID_rack) REFERENCES racks(ID)
 );
 
-/*CREATE TABLE colorPins(
+/* CREATE TABLE colorPins(
     PIN INTEGER NOT NULL,
     COLOR CHAR(1) NOT NULL,
     ID_rack INTEGER NOT NULL,
     CONSTRAINT PK_ColorPins PRIMARY KEY (PIN),
     CONSTRAINT FK_COLORS_Rack FOREIGN KEY (ID_rack) REFERENCES racks(ID)
-);
+);*/
 
 
 DELIMITER |;
@@ -75,13 +79,14 @@ CREATE OR REPLACE PROCEDURE insert_rack(
     IN infoi VARCHAR(100),
     IN redi INTEGER,
     IN greeni INTEGER,
-    IN bluei INTEGER
+    IN bluei INTEGER,
+    IN doori INTEGER
 )
 BEGIN
-    IF EXISTS (SELECT * FROM racks WHERE INFO = infoi) THEN
-        UPDATE racks SET ACTIVE=1, RED=redi, GREEN=greeni, BLUE=bluei WHERE INFO = infoi;
+    IF EXISTS (SELECT * FROM racks WHERE INFO=infoi) THEN
+        UPDATE racks SET ACTIVE=1, RED=redi, GREEN=greeni, BLUE=bluei, DOOR=doori WHERE INFO = infoi;
     ELSE
-        INSERT INTO racks (INFO,RED,GREEN,BLUE) VALUES (infoi,redi,greeni,bluei);
+        INSERT INTO racks (INFO,RED,GREEN,BLUE,DOOR) VALUES (infoi, redi, greeni, bluei, doori);
     END IF;
 END;
 |;

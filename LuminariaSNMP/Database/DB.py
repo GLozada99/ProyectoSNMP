@@ -27,9 +27,9 @@ class Database_Controler():
             print(f"Error insertando interfaz a la base de datos {self.database} : {e}")
             sys.exit(1)
     
-    def insert_rack(self,information, R, G, B):
+    def insert_rack(self,information, R, G, B, D):
         try:
-            self.cursor.execute('CALL insert_rack(?, ?, ?, ?)',(information, R, G, B))
+            self.cursor.execute('CALL insert_rack(?, ?, ?, ?, ?)',(information, R, G, B, D))
             """
             self.cursor.execute(
             'INSERT INTO racks (INFO) VALUES (?)',(information,))
