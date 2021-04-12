@@ -1,7 +1,7 @@
 from os import environ
 from LuminariaSNMP.Database.DB import Database_Controler
-
-def create_get_rack(choose):
+from LuminariaSNMP.LEDStrip.available import get_available_pins
+def create_get_rack(choose: bool):
     db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
     try:
         if choose:
@@ -33,16 +33,40 @@ def create_get_rack(choose):
         elif answer == -1:
             if response.upper() == 'Y':
                 info = input('Introduzca el nombre/información del rack a agregar:').strip()
-                R, G, B = [int(x) for x in input('Introduzca pines a controlar los colores en formato [R G B]:').strip().split()]
+                info_pins = get_available_pins()
+
+                print(info_pins[1])
+                R, G, B = [int(x) for x in input('Esos son los pines disponibles. Introduzca pines a controlar los colores en formato [R G B]:').strip().split()]
                 D = int(input('Introuzca el pin destinado al monitoreo de la puerta:').strip())
-                ID = db.insert_rack(info, R, G, B, D)
+
+                
+                chosen_pins = [R, G, B, D]
+                if len(set(chosen_pins)) == 4:
+                    bad_pins = [x for x in chosen_pins if x not in info_pins[0]]
+                    if not bad_pins:
+                        ID = db.insert_rack(info, R, G, B, D)
+                    else:
+                        raise Exception
+                else:
+                    bad_pins = None
+                    raise Exception
+                    
             else:
                 ID = None
                 info = None
     except KeyboardInterrupt:
+        print('Proceso abortado')
+    except Exception:
+        print('No es posible insertar rack.')
+        if bad_pins:
+            print('Los pines siguientes no se encuentran disponibles:', *bad_pins)
+        else:
+            print('Existe uno o más pines repetidos:',*chosen_pins)
+    except ValueError as e:
+        print(e)
+    finally:
         ID = None
         info = None
-    finally:
         db.close()
         return((ID,info))
 

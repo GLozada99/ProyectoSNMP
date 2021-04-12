@@ -26,6 +26,8 @@ import os
 import sys
 import time
 import signal
+from datetime import datetime
+
 
 
 class Daemon(object):
@@ -47,6 +49,7 @@ class Daemon(object):
         self.daemon_alive = True
         self.use_gevent = use_gevent
         self.use_eventlet = use_eventlet
+        self.time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     def log(self, *args):
         if self.verbose >= 1:
@@ -118,7 +121,7 @@ class Daemon(object):
             signal.signal(signal.SIGTERM, sigtermhandler)
             signal.signal(signal.SIGINT, sigtermhandler)
 
-        self.log("Started")
+        self.log("Iniciado")
 
         # Write pidfile
         atexit.register(
@@ -143,7 +146,7 @@ class Daemon(object):
         Start the daemon
         """
 
-        self.log("Starting...")
+        self.log("Iniciando...")
 
         # Check for a pidfile to see if the daemon already runs
         try:
@@ -156,7 +159,7 @@ class Daemon(object):
             pid = None
 
         if pid:
-            message = "pidfile %s already exists. Is it already running?\n"
+            message = "pidfile %s ya existe. Ya se está ejecutando\n"
             sys.stderr.write(message % self.pidfile)
             sys.exit(1)
 
@@ -170,13 +173,13 @@ class Daemon(object):
         """
 
         if self.verbose >= 1:
-            self.log("Stopping...")
+            self.log("Deteniendo...")
 
         # Get the pid from the pidfile
         pid = self.get_pid()
 
         if not pid:
-            message = "pidfile %s does not exist. Not running?\n"
+            message = "pidfile %s no existe. No se ha iniciado\n"
             sys.stderr.write(message % self.pidfile)
 
             # Just to be sure. A ValueError might occur if the PID file is
@@ -203,7 +206,7 @@ class Daemon(object):
                 print(str(err))
                 sys.exit(1)
 
-        self.log("Stopped")
+        self.log("Detenido")
 
     def restart(self):
         """
@@ -225,15 +228,15 @@ class Daemon(object):
 
     def is_running(self):
         pid = self.get_pid()
-
+        time = self.time
         if pid is None:
-            self.log('Process is stopped')
+            self.log('Proceso detenido')
             return False
         elif os.path.exists('/proc/%d' % pid):
-            self.log('Process (pid %d) is running...' % pid)
+            self.log(f'Proceso (pid {pid}) se encuentra activo desde {time}')
             return True
         else:
-            self.log('Process (pid %d) is killed' % pid)
+            self.log(f'Proceso (pid {pid}) detenido forzosamente')
             return False
 
     def run(self):

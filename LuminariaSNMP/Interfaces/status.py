@@ -16,7 +16,7 @@ def walk(host, version='2c',community='public',oid=''):
             return data
             break
 
-def index_by_interface(data,name):
+def index_by_interface(data: list, name: str) -> str:
     for dat in data:
         try:
             oid, if_name = dat.split('=')
@@ -27,7 +27,7 @@ def index_by_interface(data,name):
         except: 
             pass  
 
-def status_by_index(data,number):
+def status_by_index(data: list, number: str) -> str:
     for dat in data:
         try:
             oid, status = dat.split('=')
@@ -38,7 +38,7 @@ def status_by_index(data,number):
         except:
             pass
 
-def get_status(ip,interface,comm):
+def get_status(ip: str, interface: str, comm: str) -> bool:
     if_name_mib = 'IF-MIB::ifDescr'
     if_status_mib = 'IF-MIB::ifOperStatus'
     ip = ip.strip()
@@ -51,7 +51,6 @@ def get_status(ip,interface,comm):
     index = index_by_interface(name_data,interface)
     status = status_by_index(status_data,index)
     
-    print(index, interface, status)
     result = False
     if status != None:
         result = True if status.strip() == 'up' else False
