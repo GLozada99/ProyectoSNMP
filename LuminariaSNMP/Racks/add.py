@@ -15,6 +15,7 @@ def create_get_rack(choose: bool):
             while type(answer) == str:
                 if racks:
                     answer = input('Seleccione el número del rack en el que se encuentra el equipo. Si desea agregar un rack, ingrese "-1".')
+
                     response = 'Y' if answer == '-1' else 'n'
                 else:
                     answer = -1
@@ -27,9 +28,11 @@ def create_get_rack(choose: bool):
             answer = -1
             response = 'Y'
         
+        print(answer)
         if answer >= 0:
             ID = racks[answer][0]
             info = racks[answer][1]
+            print(ID,info)
         elif answer == -1:
             if response.upper() == 'Y':
                 info = input('Introduzca el nombre/información del rack a agregar:').strip()
@@ -55,6 +58,8 @@ def create_get_rack(choose: bool):
                 ID = None
                 info = None
     except KeyboardInterrupt:
+        ID = None
+        info = None
         print('Proceso abortado')
     except Exception:
         print('No es posible insertar rack.')
@@ -62,11 +67,15 @@ def create_get_rack(choose: bool):
             print('Los pines siguientes no se encuentran disponibles:', *bad_pins)
         else:
             print('Existe uno o más pines repetidos:',*chosen_pins)
-    except ValueError as e:
-        print(e)
-    finally:
+        
         ID = None
         info = None
+    except ValueError as e:
+        ID = None
+        info = None
+        print(e)
+    finally:
+        
         db.close()
         return((ID,info))
 

@@ -82,7 +82,7 @@ case $1 in
         $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Racks/active.py
     ;;
     "--restart")
-        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/start.py restart >> /tmp/snmpmonitor_log
+        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/start.py restart
     ;;
     "--remove-interface")
         $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/remove.py
@@ -91,13 +91,16 @@ case $1 in
         $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Racks/remove.py
     ;;
     "--start")
-        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/start.py start >> /tmp/snmpmonitor_log
+        $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/start.py start 
+        #pyconcrete /home/pi/aaaa/PruebaPyConcrete/Interfaces/start.pye start
     ;;
     "--status")
         $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/start.py running
+        #pyconcrete /home/pi/aaaa/PruebaPyConcrete/Interfaces/start.pye running
     ;;
     "--stop")
         $PYTHON $HOME/Documents/.Hidden/LuminariaSNMP/Interfaces/start.py stop
+        #pyconcrete /home/pi/aaaa/PruebaPyConcrete/Interfaces/start.pye stop
         off
     ;;
     *)

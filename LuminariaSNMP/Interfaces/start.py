@@ -74,13 +74,13 @@ class Monitor(Daemon):
 
 if __name__ == '__main__':
     monitor = Monitor('/tmp/monitor.pid',stdout='/tmp/snmpmonitor_log')
-    if sys.argv[1] == 'start' :
+    if sys.argv[1] == 'start':
             monitor.start()
-    elif sys.argv[1] == 'stop' :
+    elif sys.argv[1] == 'stop':
             monitor.stop()
-    elif sys.argv[1] == 'restart' :
+    elif sys.argv[1] == 'restart':
             monitor.restart()
-    elif sys.argv[1] == 'debug' :
+    elif sys.argv[1] == 'debug':
             monitor.run()
-    elif sys.argv[1] == 'running' :
+    elif sys.argv[1] == 'running':
             monitor.is_running()
