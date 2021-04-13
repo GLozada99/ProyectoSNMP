@@ -26,8 +26,8 @@ import os
 import sys
 import time
 import signal
+import time
 from datetime import datetime
-
 
 
 class Daemon(object):
@@ -49,7 +49,6 @@ class Daemon(object):
         self.daemon_alive = True
         self.use_gevent = use_gevent
         self.use_eventlet = use_eventlet
-        self.time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
     def log(self, *args):
         if self.verbose >= 1:
@@ -228,12 +227,13 @@ class Daemon(object):
 
     def is_running(self):
         pid = self.get_pid()
-        time = self.time
+        tim = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(os.path.getctime(f"/proc/{pid}")))
+        #tim  = time.strftime(time.ctime(os.path.getctime(f"/proc/{pid}")))
         if pid is None:
             self.log('Proceso detenido')
             return False
         elif os.path.exists('/proc/%d' % pid):
-            self.log(f'Proceso (pid {pid}) se encuentra activo desde {time}')
+            self.log(f'Proceso (pid {pid}) se encuentra activo desde {tim}')
             return True
         else:
             self.log(f'Proceso (pid {pid}) detenido forzosamente')
