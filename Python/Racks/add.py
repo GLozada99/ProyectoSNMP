@@ -28,7 +28,6 @@ def create_get_rack(choose: bool):
             answer = -1
             response = 'Y'
         
-        print(answer)
         if answer >= 0:
             ID = racks[answer][0]
             info = racks[answer][1]
@@ -42,7 +41,6 @@ def create_get_rack(choose: bool):
                 R, G, B = [int(x) for x in input('Esos son los pines disponibles. Introduzca pines a controlar los colores en formato [R G B]:').strip().split()]
                 D = int(input('Introuzca el pin destinado al monitoreo de la puerta:').strip())
 
-                
                 chosen_pins = [R, G, B, D]
                 if len(set(chosen_pins)) == 4:
                     bad_pins = [x for x in chosen_pins if x not in info_pins[0]]

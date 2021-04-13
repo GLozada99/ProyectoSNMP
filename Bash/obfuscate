@@ -1,0 +1,7 @@
+
+cp -r $1 "Obfuscated"
+pyconcrete-admin.py compile --source="Obfuscated" --pye
+cd Obfuscated
+find . -name "*.py" -type f -delete
+
+
