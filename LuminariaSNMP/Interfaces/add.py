@@ -32,8 +32,7 @@ try:
             except:
                 interface = interfaces[answer].split('INTEGER:')[-1].strip()
             
-            ID, info = create_get_rack(True)
-            
+            ID, info = create_get_rack(True)    
             if ID is None or info is None:
                 raise KeyboardInterrupt
 

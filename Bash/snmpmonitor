@@ -8,6 +8,7 @@ help(){
     echo "--available-pins      Muestra pines disponibles de la RPi"
     echo "--debug               Inicia el monitoreo con la salida estándar en la terminal"
     echo "--down-interfaces     Muestra las interfaces que se encuentran abajo actualmente"
+    echo "--edit-rack           Edita datos de un rack"
     echo "--help                Muestra este mensaje"
     echo "--interfaces          Muestra las interfaces actuales en la lista de monitoreo y el rack donde se encuentran"
     echo "--log                 Muestra las últimas 50 entradas del log"
@@ -35,6 +36,9 @@ case $1 in
     ;;
     "--down-interfaces")
         $EXECUTE $ROOT/Logs/down.py
+    ;;
+    "--edit-rack")
+        $EXECUTE $ROOT/Racks/edit.py
     ;;
     "--help")
         help

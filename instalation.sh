@@ -1,4 +1,4 @@
-sudo apt install mariadb-server
+sudo apt install mariadb-server libmariadb3 libmariadb-dev
 sudo systemctl start mariadb.service
 sudo apt install python3.7
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1

@@ -137,7 +137,7 @@ CREATE OR REPLACE PROCEDURE resolve_rack_interface(
 )
 BEGIN
     IF EXISTS (SELECT * FROM racks_interfaces WHERE IP = ipi AND INTERFACE = interfacei) THEN
-        UPDATE racks_interfaces SET ID_racki = id_racki WHERE IP = ipi AND INTERFACE = interfacei;
+        UPDATE racks_interfaces SET ID_rack = id_racki WHERE IP = ipi AND INTERFACE = interfacei;
     ELSE
         INSERT INTO racks_interfaces (IP,INTERFACE,ID_rack) VALUES (ipi, interfacei, id_racki);
     END IF;
