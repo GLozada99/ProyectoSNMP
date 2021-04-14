@@ -10,7 +10,7 @@ cd pyconcrete
 printf "T3khnetos123\nT3khnetos123" | sudo python setup.py install
 sudo cp /usr/local/bin/pyconcrete /usr/bin/
 cd ..
-rm pyconcrete
+sudo rm -rf pyconcrete/
 #pip install -Iv pyconcrete==0.12.1
 
 echo $"export PATH=\$PATH:$(pwd)/Bash" >> ~/.bash_profile
