@@ -14,6 +14,8 @@ sudo rm -rf pyconcrete/
 #pip install -Iv pyconcrete==0.12.1
 
 echo $"export PATH=\$PATH:$(pwd)/Bash" >> ~/.bash_profile
+echo $"export MARIADB_USER=root" >> ~/.bash_profile
+sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Bash/snmpmonitor
 
 
 
