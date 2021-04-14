@@ -7,7 +7,7 @@ pip install -Iv beautifultable==1.0.1
 pip install -Iv RPi==0.0.1
 git clone https://github.com/Falldog/pyconcrete
 cd pyconcrete
-echo "T3khnetos123\nT3khnetos123" | sudo python setup.py install
+printf "T3khnetos123\nT3khnetos123" | sudo python setup.py install
 sudo cp /usr/local/bin/pyconcrete /usr/bin/
 cd ..
 rm pyconcrete
