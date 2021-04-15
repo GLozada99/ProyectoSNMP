@@ -16,5 +16,6 @@ cd ..
 sudo rm -rf pyconcrete/
 
 echo $"export PATH=\$PATH:$(pwd)/Bash" >> ~/.bash_profile
+echo $"export PATH=\$PATH:$(pwd)/" >> ~/.bash_profile
 echo $"export MARIADB_USER=root" >> ~/.bash_profile
 sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Bash/snmpmonitor
