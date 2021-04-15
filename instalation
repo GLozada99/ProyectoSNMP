@@ -22,3 +22,4 @@ echo $"export PATH=\$PATH:$(pwd)/" >> ~/.bash_profile
 echo $"export MARIADB_USER=root" >> ~/.bash_profile
 echo $"source ~/.bashrc" >> ~/.bash_profile
 sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Bash/snmpmonitor
+sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" LuminariaSNMP/__init__.py
