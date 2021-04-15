@@ -2,12 +2,12 @@ Instalar todo lo necesario:
     sudo source instalation
 Acceder a mariadb: 
     sudo mysql -u root
-Cambiar contraseña default para root de mariadb:
-    USE mysql;
-    UPDATE user SET password=PASSWORD('<CONTRASEÑA>') WHERE User='root';
+Crear usuario de MariaDB:
+    CREATE USER IF NOT EXISTS '<USUARIO>'@'localhost' IDENTIFIED BY '<CONTRASEÑA>';
 Salir de mariadb:
     exit
-Definir variable de ambiente para contraseña de mariadb:
+Definir variable de ambiente para usuario y contraseña de mariadb:
+    echo $"export MARIADB_USER=<USUARIO>" >> ~/.bash_profile
     echo $"export MARIADB_PASSWORD=<CONTRASEÑA>" >> ~/.bash_profile
 Usando: 
     cat ~/.bash_profile
