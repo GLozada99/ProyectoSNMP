@@ -47,7 +47,6 @@ def create_get_rack(choose: bool, rack=None):
                 D = int(input('Introuzca el pin destinado al monitoreo de la puerta:').strip())
 
                 chosen_pins = [R, G, B, D]
-                print(chosen_pins, len(set(chosen_pins)))
                 if len(set(chosen_pins)) == 4:
                     bad_pins = [x for x in chosen_pins if x not in info_pins[0]]
                     if not bad_pins:

@@ -10,9 +10,9 @@ Dar privilegios al usuario:
 Salir de mariadb:
     exit
 Definir variable de ambiente para usuario y contraseña de mariadb:
-    echo $"export MARIADB_USER=<USUARIO>" >> ~/.profile
-    echo $"export MARIADB_PASSWORD=<CONTRASEÑA>" >> ~/.profile
-Usando: 
+    printf $"\nexport MARIADB_USER=<USUARIO>\n" >> ~/.profile
+    printf $"\nexport MARIADB_PASSWORD=<CONTRASEÑA>\n" >> ~/.profile
+Usando:
     cat ~/.profile
 Confirmar que en el archivo ~/.profile deben encontrarse las siguientes lineas:
     export PATH=Distintas/Rutas:Ruta/a/Bash
