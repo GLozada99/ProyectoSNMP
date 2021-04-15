@@ -1,5 +1,5 @@
 Instalar todo lo necesario:
-    sudo source instalation.sh
+    sudo source instalation
 Acceder a mariadb: 
     sudo mysql -u root
 Cambiar contraseña default para root de mariadb:
@@ -8,14 +8,12 @@ Salir de mariadb:
     exit
 Definir variable de ambiente para contraseña de mariadb:
     echo $"export MARIADB_PASSWORD=<CONTRASEÑA>" >> ~/.bash_profile
-
 Usando: 
     cat ~/.bash_profile
 Confirmar que en el archivo ~/.bash_profile deben encontrarse las siguientes lineas:
-    export PATH=Distintas/Rutas:Ruta/a/BashScripts
+    export PATH=Distintas/Rutas:Ruta/a/Bash
     export MARIADB_USER=root
-    export MARIADB_PASSWORD=<CONTRASEÑA>
-
+    export MARIADB_PASSWORD=<CONTRASEÑA>s
 Si es correcto lo anterior, registrar cambios con:
     source ~/.bash_profile
 
