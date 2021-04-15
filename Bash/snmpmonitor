@@ -67,7 +67,6 @@ case $1 in
         $EXECUTE $ROOT/Interfaces/start.py start
     ;;
     "--status")
-        echo "$EXECUTE $ROOT/Interfaces/start.py running"
         $EXECUTE $ROOT/Interfaces/start.py running
     ;;
     "--stop")

@@ -1,22 +1,27 @@
+Todos los comandos serán introducidos desde el directorio raiz del proyecto
 Instalar todo lo necesario:
     sudo source instalation
 Acceder a mariadb: 
     sudo mysql -u root
 Crear usuario de MariaDB:
     CREATE USER IF NOT EXISTS '<USUARIO>'@'localhost' IDENTIFIED BY '<CONTRASEÑA>';
+Dar privilegios al usuario:
+    GRANT ALL PRIVILEGES ON *.* TO '<USUARIO>'@'localhost' IDENTIFIED BY '<CONTRASEÑA>';
 Salir de mariadb:
     exit
 Definir variable de ambiente para usuario y contraseña de mariadb:
-    echo $"export MARIADB_USER=<USUARIO>" >> ~/.bash_profile
-    echo $"export MARIADB_PASSWORD=<CONTRASEÑA>" >> ~/.bash_profile
+    echo $"export MARIADB_USER=<USUARIO>" >> ~/.profile
+    echo $"export MARIADB_PASSWORD=<CONTRASEÑA>" >> ~/.profile
 Usando: 
-    cat ~/.bash_profile
-Confirmar que en el archivo ~/.bash_profile deben encontrarse las siguientes lineas:
+    cat ~/.profile
+Confirmar que en el archivo ~/.profile deben encontrarse las siguientes lineas:
     export PATH=Distintas/Rutas:Ruta/a/Bash
-    export MARIADB_USER=root
-    export MARIADB_PASSWORD=<CONTRASEÑA>s
+    export MARIADB_USER=<USUARIO>
+    export MARIADB_PASSWORD=<CONTRASEÑA>
 Si es correcto lo anterior, registrar cambios con:
     source ~/.bash_profile
+Generar base de datos:
+    sudo mysql -h localhost -u root < SQL/script.sql
 
 
 
