@@ -3,7 +3,8 @@ Instalar todo lo necesario:
 Acceder a mariadb: 
     sudo mysql -u root
 Cambiar contraseña default para root de mariadb:
-    SET PASSWORD FOR 'root'@'localhost' = PASSWORD('<CONTRASEÑA>');
+    USE mysql;
+    UPDATE user SET password=PASSWORD('<CONTRASEÑA>') WHERE User='root';
 Salir de mariadb:
     exit
 Definir variable de ambiente para contraseña de mariadb:
