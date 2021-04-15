@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PYTHONPATH="/home/pi/Documents/.Hidden"
+export PYTHONPATH="/home/pi/Documents/.Hidden"
 EXECUTE="/usr/bin/python3.7"
 PATH="/home/pi/Documents/.Hidden/:$PATH"
 ROOT="/home/pi/Documents/.Hidden/LuminariaSNMP"
