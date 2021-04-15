@@ -1,6 +1,7 @@
 #!/bin/bash
 EXECUTE="/usr/bin/python3.7"
 PYTHONPATH="/home/pi/Documents/.Hidden/:$PATH"
+PATH="/home/pi/Documents/.Hidden/:$PATH"
 ROOT="/home/pi/Documents/.Hidden/LuminariaSNMP"
 help(){
     echo "--add-interface       Añade interfaz al monitoreo (snmpmonitor --add <ip> <community>)"
