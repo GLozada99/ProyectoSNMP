@@ -1,10 +1,9 @@
 #!/bin/bash
 set -e
-
-sudo apt-get install -y mariadb-server libmariadb3 libmariadb-dev
-sudo systemctl start mariadb.service
 sudo apt-get install -y python3.7
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
+sudo apt-get install -y mariadb-server libmariadb3 libmariadb-dev
+sudo systemctl start mariadb.service
 
 pip install -Iv mariadb==1.0.6
 pip install -Iv beautifultable==1.0.1
