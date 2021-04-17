@@ -27,9 +27,7 @@ Configurar agente SNMP:
     Agregar la linea: rocommunity public
     Agregar la línea: agentAddress udp:IP_Raspberry:161
     Comentar la línea: agentAddress udp:127.0.0.1:161
-Configurar el MIB loading:
-    sudo nano /etc/snmp/snmp.conf
-    Comentar la línea: mibs :
+
     
 
 
