@@ -3,7 +3,7 @@ set -e
 sudo apt-get install -y python3.7
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
 sudo apt-get install -y mariadb-server libmariadb3 libmariadb-dev
-sudo apt-get install -y snmp snmpd
+sudo apt-get install -y snmp snmpd snmp-mibs-downloader
 sudo systemctl start mariadb.service        
 
 pip install -Iv mariadb==1.0.6
@@ -19,8 +19,8 @@ sudo rm -rf pyconcrete/
 printf $". ~/.profile
 if [[ \$- == *i* ]]; then . ~/.bashrc; fi" >> ~/.bash_profile
 
-printf $"export PATH=\$PATH:$(pwd)/Bash" >> ~/.profile
-#printf $"export PATH=\$PATH:$(pwd)/" >> ~/.profile
-#echo $"export MARIADB_USER=root" >> ~/.bash_profile
-#printf $"source ~/.bashrc" >> ~/.bash_profile  
+printf $"export PATH=\$PATH:$(pwd)/Bash" >> ~/.profile 
 sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Bash/snmpmonitor
+sudo sed -i "s+mibs :+#mibs :+" /etc/snmp/snmpd.conf
+#sudo sed -i "s+agentAddress udp:127.0.0.1:161+#agentAddress udp:127.0.0.1:161+" /etc/snmp/snmpd.conf
+#sudo printf $"rocommunity public" >> /etc/snmp/snmpd.conf

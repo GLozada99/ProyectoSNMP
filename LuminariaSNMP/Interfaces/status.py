@@ -3,7 +3,7 @@ import subprocess
 
 def walk(host, version='2c',community='public',oid=''):
     data = []
-    process = subprocess.Popen(['snmpwalk','-Os','-c',community,'-v',version,host,'-Ci',oid, '-t', '0.1'], stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
+    process = subprocess.Popen(f'snmpwalk -Os -c {community} -v {version} {host} -Ci {oid} -t 0.1'.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
     while True:
         output = process.stdout.readline()
         data.append(output.strip())
