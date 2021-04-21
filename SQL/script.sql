@@ -93,10 +93,10 @@ BEGIN
     SELECT i.IP, i.INTERFACE, r.INFO, sl.DOWNTIME FROM interfaces AS i INNER JOIN racks_interfaces AS ri ON i.IP = ri.IP AND i.INTERFACE = ri.INTERFACE INNER JOIN racks AS r ON r.ID = ri.ID_rack INNER JOIN status_log AS sl ON i.IP = sl.IP AND i.INTERFACE = sl.INTERFACE WHERE i.ACTIVE = 1 AND sl.UPTIME IS NULL;
 END;
 |;
-
+DELIMITER |;
 CREATE OR REPLACE PROCEDURE get_log()
 BEGIN
-    SELECT sl.ID, sl.IP, sl.INTERFACE, sl.DOWNTIME, sl.UPTIME FROM status_log AS sl INNER JOIN interfaces AS i ON i.IP = sl.IP AND i.INTERFACE = sl.INTERFACE WHERE i.ACTIVE = 1 ORDER BY id ASC LIMIT 50;
+    SELECT * FROM (SELECT sl.ID, sl.IP, sl.INTERFACE, sl.DOWNTIME, sl.UPTIME FROM status_log AS sl INNER JOIN interfaces AS i ON i.IP = sl.IP AND i.INTERFACE = sl.INTERFACE WHERE i.ACTIVE = 1 ORDER BY id DESC LIMIT 50) as final ORDER BY id ASC;
 END;
 |;
 
@@ -110,7 +110,7 @@ BEGIN
 END;
 |;
 
-DELIMITER |;
+
 CREATE OR REPLACE PROCEDURE remove_rack(
     IN IDi INTEGER
 )
@@ -120,7 +120,7 @@ BEGIN
 END;
 |;
 
-DELIMITER |;
+
 CREATE OR REPLACE PROCEDURE resolve_rack_interface(
     IN ipi VARCHAR(50),
     IN interfacei VARCHAR(35),
