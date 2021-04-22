@@ -1,0 +1,16 @@
+--add-interface       Añade interfaz al monitoreo (snmpmonitor --add <ip> <community>)
+--add-rack            Añade rack
+--available-pins      Muestra pines disponibles de la RPi
+--debug               Inicia el monitoreo con la salida estándar en la terminal
+--down-interfaces     Muestra las interfaces que se encuentran abajo actualmente
+--edit-rack           Edita datos de un rack
+--help                Muestra este mensaje
+--interfaces          Muestra las interfaces actuales en la lista de monitoreo y el rack donde se encuentran
+--log                 Muestra las últimas 50 entradas del log
+--racks               Muestra los racks guardados
+--remove-interface    Elimina interfaz del monitoreo
+--remove-rack         Elimina rack y todas las interfaces que lo contienen
+--restart             Reinicia el monitoreo
+--start               Inicia el proceso de monitoreo
+--status              Muestra si el monitoreo se encuentra activo actualmente
+--stop                Detiene el proceso de monitoreo

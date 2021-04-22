@@ -8,7 +8,7 @@ log = db.get_log()
 db.close()
 table = BeautifulTable()
 table.columns.header = ["IP", "Interfaz", "Hora de caída", "Hora de subida", "Tiempo caído"]
-for entry in log: 
+for entry in log:
     subida = entry[4]
     try:
         total = entry[4] - entry[3]
