@@ -18,7 +18,7 @@ try:
                 try:
                     print(i,inter.split('STRING:')[-1].strip())
                 except:
-                    print(i,inter.split('INTEGER:')[-1].strip())
+                    pass
 
             answer = ''
             while type(answer) == str:
@@ -29,15 +29,17 @@ try:
                     pass
             try:
                 interface = interfaces[answer].split('STRING:')[-1].strip()
-            except:
-                interface = interfaces[answer].split('INTEGER:')[-1].strip()
+                oid_num = interfaces[answer].split('STRING:')[0].split()[0].split('.')[-1].strip()
+            except IndexError as e:
+                print(f'Numero incorrecto: {e}')
+            
             
             ID, info = create_get_rack(True)    
             if ID is None or info is None:
                 raise KeyboardInterrupt
 
                 
-            db.insert_interface(ip,interface,community)
+            db.insert_interface(ip,interface,community,oid_num)
             db.resolve_rack_interface(ip,interface,ID)
         else:
             print('No se recibe respuesta SNMP, esto puede ser debido a:\nLa IP y/o el Community no son los correctos\nEl equipo no puede ser alcanzado',)

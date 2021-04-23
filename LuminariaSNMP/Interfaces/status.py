@@ -1,16 +1,14 @@
 import sys
 import subprocess
 
-def walk(host, version='2c',community='public',oid=''):
+def walk(host,community='public',oid='', version='2c'):
     data = []
     process = subprocess.Popen(f'snmpwalk -Os -c {community} -v {version} {host} -Ci {oid} -t 0.1'.split(), stdout=subprocess.PIPE, stderr=subprocess.PIPE,universal_newlines=True)
     while True:
         output = process.stdout.readline()
         data.append(output.strip())
-        # Do something else
         return_code = process.poll()
         if return_code is not None:
-            # Process has finished, read rest of the output 
             for output in process.stdout.readlines():
                 data.append(output.strip())
             return data
@@ -38,18 +36,14 @@ def status_by_index(data: list, number: str) -> str:
         except:
             pass
 
-def get_status(ip: str, interface: str, comm: str) -> bool:
-    if_name_mib = 'IF-MIB::ifDescr'
-    if_status_mib = 'IF-MIB::ifOperStatus'
+def get_status(ip: str, comm: str, oid_num: str) -> bool:
+    if_status_mib = 'ifOperStatus'
     ip = ip.strip()
-    interface = interface.strip()
     comm = comm.strip()
+    oid_num = oid_num.strip()
     
-    name_data = walk(ip,oid=if_name_mib,community=comm)
-    status_data = walk(ip,oid=if_status_mib,community=comm)
-    
-    index = index_by_interface(name_data,interface)
-    status = status_by_index(status_data,index)
+    status_data = walk(ip,comm,if_status_mib)
+    status = status_by_index(status_data,oid_num)
     
     result = False
     if status != None:

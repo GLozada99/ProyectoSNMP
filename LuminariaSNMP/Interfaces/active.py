@@ -9,6 +9,6 @@ db.close()
 table = BeautifulTable()
 table.columns.header = ['IP', 'Interfaz', 'Community', 'Rack/Gabinete']
 for interface in interfaces: 
-    table.rows.append(interface)
+    table.rows.append([interface[0],interface[1],interface[2],interface[3]])
 
 print(table)

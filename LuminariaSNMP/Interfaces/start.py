@@ -11,7 +11,7 @@ from LuminariaSNMP.LEDStrip.offpins import turn_off
 class Monitor(Daemon):
     def run(self):
         db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
-        try:
+        try:    
             racks = db.get_racks()
 
             strip_lis = dict()
@@ -38,8 +38,8 @@ class Monitor(Daemon):
 
             down_interfaces = set([(inter[0], inter[1], inter[3]) for inter in db.get_down_interfaces()])
             while interfaces:
-                for ip, interface, community, rack in interfaces:
-                    status = get_status(ip, interface, community)
+                for ip, interface, community, rack, oid_num in interfaces:
+                    status = get_status(ip, community, oid_num)
                     try:
                         if not status:
                             strip_lis[rack].error()

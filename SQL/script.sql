@@ -11,6 +11,7 @@ CREATE TABLE interfaces(
     INTERFACE VARCHAR(35),
     COMMUNITY VARCHAR(35) NOT NULL,
     ACTIVE BIT DEFAULT 1,
+    OID_NUM VARCHAR(15) NOT NULL,
     CONSTRAINT PK_IP_INTERFACE PRIMARY KEY (IP, INTERFACE)
 );
 
@@ -55,13 +56,14 @@ DELIMITER |;
 CREATE OR REPLACE PROCEDURE insert_interface(
     IN ipi VARCHAR(50),
     IN interfacei VARCHAR(35),
-    IN communityi VARCHAR(35)
+    IN communityi VARCHAR(35),
+    IN oid_numi VARCHAR(15)
 )
 BEGIN
     IF EXISTS (SELECT * FROM interfaces WHERE IP=ipi AND INTERFACE=interfacei) THEN
         UPDATE interfaces SET ACTIVE=1, COMMUNITY=communityi WHERE IP = ipi AND INTERFACE = interfacei;
     ELSE
-        INSERT INTO interfaces (IP,INTERFACE,COMMUNITY) VALUES (ipi, interfacei, communityi);
+        INSERT INTO interfaces (IP,INTERFACE,COMMUNITY,OID_NUM) VALUES (ipi, interfacei, communityi, oid_numi);
     END IF;
 END;
 |;
@@ -84,7 +86,7 @@ END;
 
 CREATE OR REPLACE PROCEDURE get_interfaces_racks()
 BEGIN
-    SELECT i.IP, i.INTERFACE, i.COMMUNITY, r.INFO FROM interfaces AS i INNER JOIN racks_interfaces AS ri ON i.IP = ri.IP AND i.INTERFACE = ri.INTERFACE INNER JOIN racks AS r ON r.ID = ri.ID_rack WHERE i.ACTIVE = 1;
+    SELECT i.IP, i.INTERFACE, i.COMMUNITY, r.INFO, i.OID_NUM FROM interfaces AS i INNER JOIN racks_interfaces AS ri ON i.IP = ri.IP AND i.INTERFACE = ri.INTERFACE INNER JOIN racks AS r ON r.ID = ri.ID_rack WHERE i.ACTIVE = 1;
 END;
 |;
 

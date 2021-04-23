@@ -19,9 +19,9 @@ class Database_Controler():
             print(f'Error al conectar a la base de datos: {e}')
             sys.exit(1)
     
-    def insert_interface(self,ip,interface,community):
+    def insert_interface(self,ip,interface,community,oid_num):
         try:
-            self.cursor.execute('CALL insert_interface(?, ?, ?)',(ip,interface,community))
+            self.cursor.execute('CALL insert_interface(?, ?, ?, ?)',(ip,interface,community,int(oid_num)))
             self.connection.commit()
         except mariadb.Error as e:
             print(f'Error al insertar interfaz: {self.database} : {e}')

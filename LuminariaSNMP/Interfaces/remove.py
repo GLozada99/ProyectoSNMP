@@ -27,7 +27,7 @@ try:
         print('No existen interfaces que eliminar')
         exit(0)
 
-    ip, interface, community, status = interfaces[answer]
+    ip, interface, community, status, oid = interfaces[answer]
 
     db.delete_interface(ip,interface)
 
