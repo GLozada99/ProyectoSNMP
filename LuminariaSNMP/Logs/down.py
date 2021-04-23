@@ -7,8 +7,10 @@ db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWOR
 log = db.get_down_interfaces()
 db.close()
 table = BeautifulTable()
-table.columns.header = ["IP", "Interfaz", "Rack/Gabinete", "Hora de caída"]
-for entry in log: 
-    table.rows.append([entry[0], entry[1], entry[2], str(entry[3])])
-
+table.columns.header = ['IP', 'Interfaz', 'Rack/Gabinete', 'Hora de caída']
+if log:
+    for entry in log: 
+        table.rows.append([entry[0], entry[1], entry[2], str(entry[3])])
+else:
+    print('No hay interfaces caídas')
 print(table)

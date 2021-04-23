@@ -7,7 +7,7 @@ db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWOR
 racks = db.get_racks()
 
 table = BeautifulTable()
-table.columns.header = ["Índice", "Nombre"]
+table.columns.header = ['Índice', 'Nombre']
 for i,rack in enumerate(racks): 
     table.rows.append([i, rack[1]])
 

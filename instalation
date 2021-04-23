@@ -21,9 +21,9 @@ if [[ \$- == *i* ]]; then . ~/.bashrc; fi" >> ~/.bash_profile
 
 printf $"export PATH=\$PATH:$(pwd)/Bash" >> ~/.profile 
 sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Bash/snmpmonitor
-sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" snmpmonitor-completion.sh
+sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Help/snmpmonitor-completion
 sudo sed -i "s+mibs :+#mibs :+" /etc/snmp/snmp.conf
-sudo cp Help/snmpmonitor-completion.sh /etc/bash_completion.d/ 
+sudo cp Help/snmpmonitor-completion /etc/bash_completion.d/ 
 #printf $"source $(pwd)/Bash/snmpmonitor-completion.sh" >> ~/.profile
 #source Bash/snmpmonitor-completion.sh
 #sudo sed -i "s+agentAddress udp:127.0.0.1:161+#agentAddress udp:127.0.0.1:161+" /etc/snmp/snmpd.conf

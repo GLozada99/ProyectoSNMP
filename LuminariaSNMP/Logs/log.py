@@ -7,7 +7,7 @@ db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWOR
 log = db.get_log()
 db.close()
 table = BeautifulTable()
-table.columns.header = ["IP", "Interfaz", "Hora de caída", "Hora de subida", "Tiempo caído"]
+table.columns.header = ['IP', 'Interfaz', 'Hora de caída', 'Hora de subida', 'Tiempo caído']
 for entry in log:
     subida = entry[4]
     try:

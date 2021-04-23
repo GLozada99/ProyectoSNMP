@@ -7,7 +7,7 @@ interfaces = db.get_interfaces()
 db.close()
 
 table = BeautifulTable()
-table.columns.header = ["IP", "Interfaz", "Community", "Rack/Gabinete"]
+table.columns.header = ['IP', 'Interfaz', 'Community', 'Rack/Gabinete']
 for interface in interfaces: 
     table.rows.append(interface)
 

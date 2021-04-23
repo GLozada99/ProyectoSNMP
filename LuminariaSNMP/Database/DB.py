@@ -24,7 +24,7 @@ class Database_Controler():
             self.cursor.execute('CALL insert_interface(?, ?, ?)',(ip,interface,community))
             self.connection.commit()
         except mariadb.Error as e:
-            print(f"Error al insertar interfaz: {self.database} : {e}")
+            print(f'Error al insertar interfaz: {self.database} : {e}')
             sys.exit(1)
     
     def insert_rack(self,information, R, G, B, D):
@@ -35,7 +35,7 @@ class Database_Controler():
             self.connection.commit()    
             return ID
         except mariadb.Error as e:
-            print(f"Error al insertar rack: {e}")
+            print(f'Error al insertar rack: {e}')
             sys.exit(1)
     
     def resolve_rack_interface(self,ip,interface,ID_rack):
@@ -53,7 +53,7 @@ class Database_Controler():
             'CALL get_interfaces_racks()')
             return self.cursor.fetchall()
         except mariadb.Error as e:
-            print(f"Error obteniendo interfaces: {e}")
+            print(f'Error obteniendo interfaces: {e}')
             sys.exit(1)
     
     def get_racks(self):
@@ -62,7 +62,7 @@ class Database_Controler():
             'SELECT * FROM racks WHERE ACTIVE = 1')
             return self.cursor.fetchall()
         except mariadb.Error as e:
-            print(f"Error obteniendo racks: {e}")
+            print(f'Error obteniendo racks: {e}')
             sys.exit(1)
     
     def delete_interface(self,ip,interface):
@@ -72,7 +72,7 @@ class Database_Controler():
             (ip,interface))
             self.connection.commit()
         except mariadb.Error as e:
-            print(f"Error borrando interfaz: {e}")
+            print(f'Error borrando interfaz: {e}')
             sys.exit(1)
     
     def delete_rack(self,ID):
@@ -82,7 +82,7 @@ class Database_Controler():
             (ID,))
             self.connection.commit()
         except mariadb.Error as e:
-            print(f"Error borrando rack: {e}")
+            print(f'Error borrando rack: {e}')
             sys.exit(1)
     
     def insert_down_log(self,ip,interface):
@@ -103,7 +103,7 @@ class Database_Controler():
             self.cursor.execute('CALL get_log()')
             return self.cursor.fetchall()
         except mariadb.Error as e:
-            print(f"Error obteniendo log: {e}")
+            print(f'Error obteniendo log: {e}')
             sys.exit(1)
 
     def get_down_interfaces(self):
@@ -111,7 +111,7 @@ class Database_Controler():
             self.cursor.execute('CALL get_down_interfaces()')
             return self.cursor.fetchall()
         except mariadb.Error as e:
-            print(f"Error obteniendo log: {e}")
+            print(f'Error obteniendo log: {e}')
             sys.exit(1)
     
     def get_rack_with_info(self, info):
@@ -119,7 +119,7 @@ class Database_Controler():
             self.cursor.execute('SELECT * FROM racks WHERE INFO = ?',(info))
             return self.cursor.fetchall()
         except mariadb.Error as e:
-            print(f"Error obteniendo racks: {e}")
+            print(f'Error obteniendo racks: {e}')
             sys.exit(1)
 
     def close(self):

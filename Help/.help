@@ -1,4 +1,4 @@
---add-interface       Añade interfaz al monitoreo (snmpmonitor --add <ip> <community>)
+--add-interface       Añade interfaz al monitoreo (snmpmonitor --add-interface <ip> <community>)
 --add-rack            Añade rack
 --available-pins      Muestra pines disponibles de la RPi
 --debug               Inicia el monitoreo con la salida estándar en la terminal

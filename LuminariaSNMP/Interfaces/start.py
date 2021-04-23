@@ -55,7 +55,7 @@ class Monitor(Daemon):
                             insert_up_down = True
                             db.insert_up_log(ip, interface)
                     except mariadb.Error as e:
-                        print(f"Error insertando log a la base de datos: {e}",'\n Se realizó una nueva conexión')
+                        print(f'Error insertando log a la base de datos: {e}','\n Se realizó una nueva conexión')
                         db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
                         if insert_up_down:
                             db.insert_up_log(ip, interface)

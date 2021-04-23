@@ -9,7 +9,7 @@ try:
 
 
     table = BeautifulTable()
-    table.columns.header = ["Indice", "IP", "Interfaz", "Community", "Rack/Gabinete"]
+    table.columns.header = ['Indice', 'IP', 'Interfaz', 'Community', 'Rack/Gabinete']
     for i,interface in enumerate(interfaces): 
         table.rows.append([i, interface[0], interface[1], interface[2], interface[3]])
 
