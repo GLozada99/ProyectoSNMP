@@ -23,7 +23,7 @@ class Monitor(Daemon):
                 b = int(rack[5])
                 d = int(rack[6])
                 strip = LED_Strip(r,g,b,d)
-                strip.start_pwm(10000)
+                strip.start_pwm()
                 strip_lis[name] = strip
                 strip.white()
 

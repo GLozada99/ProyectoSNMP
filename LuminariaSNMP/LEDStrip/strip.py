@@ -19,7 +19,7 @@ class LED_Strip:
         
         GPIO.setup(self.door, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-    def start_pwm(self,freq):
+    def start_pwm(self,freq=10000):
         self.pwm_r = GPIO.PWM(self.red,freq)
         self.pwm_g = GPIO.PWM(self.green,freq)
         self.pwm_b = GPIO.PWM(self.blue,freq)
