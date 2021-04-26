@@ -30,7 +30,13 @@ Configurar agente SNMP:
 Ingresar a cron:
     crontab -e
 Agregar a cron la siguiente línea:
-    @reboot sleep 10 && PYTHONPATH=ruta/abs/dir/raiz/proyecto/ snmpmonitor --start
+    SHELL=/bin/bash
+    MARIADB_USER="<USUARIO>"
+    MARIADB_PASSWORD="<CONTRASEÑA>"
+    
+    @reboot sleep 6 && PYTHONPATH=ruta/abs/dir/raiz/proyecto/ ruta/abs/dir/raiz/proyecto/Bash/snmpmonitor --start
+
+
     
 
 
