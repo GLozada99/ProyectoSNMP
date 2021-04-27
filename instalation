@@ -17,11 +17,11 @@ cd ..
 sudo rm -rf pyconcrete/
 
 printf $". ~/.profile
-if [[ \$- == *i* ]]; then . ~/.bashrc; fi" >> ~/.bash_profile 
+if [[ \$- == *i* ]]; then . ~/.bashrc; fi \n" >> ~/.bash_profile 
 cd ..
 ProyectoSNMP/Help/obfuscate ProyectoSNMP
 cd SNMP
-printf $"export PATH=\$PATH:$(pwd)/Bash" >> ~/.profile
+printf $"export PATH=\$PATH:$(pwd)/Bash\n" >> ~/.profile
 sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Bash/snmpmonitor
 sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Help/snmpmonitor-completion
 sudo sed -i "s+mibs :+#mibs :+" /etc/snmp/snmp.conf
