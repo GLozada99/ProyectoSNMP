@@ -3,5 +3,6 @@ cp -r $1 "Obfuscated"
 pyconcrete-admin.py compile --source="Obfuscated" --pye
 cd Obfuscated
 find . -name "*.py" -type f -delete
-
+sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Bash/snmpmonitor
+printf $"export PATH=\$PATH:$(pwd)/Bash" >> ~/.profile 
 
