@@ -5,7 +5,7 @@ Acceder a mariadb:
     sudo mysql -u root
 Crear usuario de MariaDB:
     CREATE USER IF NOT EXISTS '<USUARIO>'@'localhost';
-    SET PASSWORD FOR 'admin'@'localhost' = PASSWORD('<CONTRASEÑA>');
+    SET PASSWORD FOR '<USUARIO>'@'localhost' = PASSWORD('<CONTRASEÑA>');
 Dar privilegios al usuario:
     GRANT ALL PRIVILEGES ON *.* TO '<USUARIO>'@'localhost';
     FLUSH PRIVILEGES;
