@@ -4,9 +4,11 @@ Instalar todo lo necesario:
 Acceder a mariadb: 
     sudo mysql -u root
 Crear usuario de MariaDB:
-    CREATE USER IF NOT EXISTS '<USUARIO>'@'localhost' IDENTIFIED BY '<CONTRASEÑA>';
+    CREATE USER IF NOT EXISTS '<USUARIO>'@'localhost';
+    SET PASSWORD FOR 'admin'@'localhost' = PASSWORD('<CONTRASEÑA>');
 Dar privilegios al usuario:
-    GRANT ALL PRIVILEGES ON *.* TO '<USUARIO>'@'localhost' IDENTIFIED BY '<CONTRASEÑA>';
+    GRANT ALL PRIVILEGES ON *.* TO '<USUARIO>'@'localhost';
+    FLUSH PRIVILEGES;
 Salir de mariadb:
     exit
 Definir variable de ambiente para usuario y contraseña de mariadb:
@@ -31,9 +33,8 @@ Ingresar a cron:
     crontab -e
 Agregar a cron la siguiente línea:
     SHELL=/bin/bash
-    MARIADB_USER="<USUARIO>"
-    MARIADB_PASSWORD="<CONTRASEÑA>"
-    
+    MARIADB_USER=<USUARIO>
+    MARIADB_PASSWORD=<CONTRASEÑA>
     @reboot sleep 6 && PYTHONPATH=ruta/abs/dir/raiz/proyecto/ ruta/abs/dir/raiz/proyecto/Bash/snmpmonitor --start
 
 
