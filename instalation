@@ -20,6 +20,7 @@ printf $". ~/.profile
 if [[ \$- == *i* ]]; then . ~/.bashrc; fi" >> ~/.bash_profile 
 cd ..
 ProyectoSNMP/Help/obfuscate ProyectoSNMP
+cd SNMP
 printf $"export PATH=\$PATH:$(pwd)/Bash" >> ~/.profile
 sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Bash/snmpmonitor
 sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Help/snmpmonitor-completion
