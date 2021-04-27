@@ -17,7 +17,7 @@ Definir variable de ambiente para usuario y contraseña de mariadb:
 Usando:
     cat ~/.profile
 Confirmar que en el archivo ~/.profile deben encontrarse las siguientes lineas:
-    IGNORAR ESTO ---> export PATH=Distintas/Rutas:Ruta/a/Bash
+    export PATH=Distintas/Rutas:Ruta/a/Bash
     export MARIADB_USER=<USUARIO>
     export MARIADB_PASSWORD=<CONTRASEÑA>
 Si es correcto lo anterior, registrar cambios con:
