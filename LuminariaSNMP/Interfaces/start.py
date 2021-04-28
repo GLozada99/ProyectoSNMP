@@ -50,7 +50,7 @@ class Monitor(Daemon):
                             db.insert_down_log(ip, interface)
                             current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
                             print(f'Interface {interface} on host {ip} is down at {current_time}')
-                        elif (ip, interface, rack) in down_interfaces:
+                        if (ip, interface, rack) in down_interfaces:
                             down_interfaces.remove(((ip, interface, rack)))
                             if rack not in chain(*down_interfaces):
                                 good_racks.add(rack)
