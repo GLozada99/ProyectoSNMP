@@ -37,7 +37,7 @@ class Monitor(Daemon):
             interfaces = db.get_interfaces()
 
             down_interfaces = set([(inter[0], inter[1], inter[3]) for inter in db.get_down_interfaces()])
-            print(down_interfaces,'aaa')
+            print(down_interfaces)
             while interfaces:
                 for ip, interface, community, rack, oid_num in interfaces:
                     status = get_status(ip, community, oid_num)
