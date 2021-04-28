@@ -2,10 +2,11 @@
 set -e
 sudo apt-get install -y python3.7
 sudo apt-get install -y python3-pip
+sudo apt-get install -y neovim
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 1
 sudo apt-get install -y mariadb-server libmariadb3 libmariadb-dev
 sudo apt-get install -y snmp snmpd snmp-mibs-downloader
-sudo systemctl start mariadb.service        
+sudo systemctl start mariadb.service    
 
 pip install -Iv mariadb==1.0.6 || pip3 install -Iv mariadb==1.0.6
 pip install -Iv beautifultable==1.0.1 || pip3 install -Iv beautifultable==1.0.1

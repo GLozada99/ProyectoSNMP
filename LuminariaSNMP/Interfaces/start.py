@@ -85,3 +85,5 @@ if __name__ == '__main__':
             monitor.run()
     elif sys.argv[1] == 'running':
             monitor.is_running()
+    else:
+        print('No se escogió una opción adecuada')
