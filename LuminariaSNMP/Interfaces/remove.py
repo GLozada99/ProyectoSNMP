@@ -3,7 +3,7 @@ from beautifultable import BeautifulTable
 from os import environ
 
 try:
-    db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
+    db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'SNMPdata')
 
     interfaces = db.get_interfaces()
 

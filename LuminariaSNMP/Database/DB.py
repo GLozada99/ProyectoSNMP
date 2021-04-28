@@ -4,7 +4,7 @@ from datetime import datetime
 import sys
 
 class Database_Controler():
-    def __init__(self,user,password,host,port,database):
+    def __init__(self,user,password,database,host='localhost',port=3306):
         try:
             self.connection = mariadb.connect(
             user=user,

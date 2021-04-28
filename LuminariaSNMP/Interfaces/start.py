@@ -10,18 +10,13 @@ from LuminariaSNMP.LEDStrip.strip import LED_Strip
 from LuminariaSNMP.LEDStrip.offpins import turn_off
 class Monitor(Daemon):
     def run(self):
-        db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
+        db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'SNMPdata')
         try:    
             racks = db.get_racks()
 
             strip_lis = dict()
 
-            for rack in racks:
-                name = rack[1]
-                r = int(rack[3])
-                g = int(rack[4])
-                b = int(rack[5])
-                d = int(rack[6])
+            for _, name, _, r, g, b, d in racks:
                 strip = LED_Strip(r,g,b,d)
                 strip.start_pwm()
                 strip_lis[name] = strip
@@ -36,11 +31,11 @@ class Monitor(Daemon):
 
             interfaces = db.get_interfaces()
 
-            down_interfaces = set([(inter[0], inter[1], inter[3]) for inter in db.get_down_interfaces()])
-            print(down_interfaces)
+            down_interfaces = set([(d_ip, d_interface, d_rack) for d_ip, d_interface, d_rack, _ in db.get_down_interfaces()])
             while interfaces:
                 for ip, interface, community, rack, oid_num in interfaces:
                     status = get_status(ip, community, oid_num)
+                    #print(ip, community, status)
                     try:
                         if not status:
                             strip_lis[rack].error()
@@ -58,7 +53,7 @@ class Monitor(Daemon):
                             db.insert_up_log(ip, interface)
                     except mariadb.Error as e:
                         print(f'Error insertando log a la base de datos: {e}','\n Se realizó una nueva conexión')
-                        db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
+                        db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'SNMPdata')
                         if insert_up_down:
                             db.insert_up_log(ip, interface)
                         else:

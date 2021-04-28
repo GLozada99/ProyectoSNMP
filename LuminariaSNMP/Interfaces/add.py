@@ -6,7 +6,7 @@ from LuminariaSNMP.Racks.add import create_get_rack
 
 
 try:
-    db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
+    db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'SNMPdata')
     if len(sys.argv) == 3:
         ip = sys.argv[1]
         community = sys.argv[2]

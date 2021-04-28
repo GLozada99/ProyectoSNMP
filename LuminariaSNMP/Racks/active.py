@@ -2,7 +2,7 @@ from os import environ
 from beautifultable import BeautifulTable 
 from LuminariaSNMP.Database.DB import Database_Controler
 
-db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
+db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'SNMPdata')
 
 racks = db.get_racks()
 db.close()

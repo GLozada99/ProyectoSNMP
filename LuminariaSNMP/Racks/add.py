@@ -2,7 +2,7 @@ from os import environ
 from LuminariaSNMP.Database.DB import Database_Controler
 from LuminariaSNMP.LEDStrip.available import get_available_pins
 def create_get_rack(choose: bool, current_rack=None):
-    db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'127.0.0.1',3306,'SNMPdata')
+    db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'SNMPdata')
     try:
         if choose:
             racks = db.get_racks()
