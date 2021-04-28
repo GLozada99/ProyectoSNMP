@@ -7,7 +7,7 @@ Crear usuario de MariaDB:
     CREATE USER IF NOT EXISTS '<USUARIO>'@'localhost';
     SET PASSWORD FOR '<USUARIO>'@'localhost' = PASSWORD('<CONTRASEÑA>');
 Dar privilegios al usuario:
-    GRANT ALL PRIVILEGES ON *.* TO '<USUARIO>'@'localhost';
+    GRANT ALL PRIVILEGES ON *.* TO '<USUARIO>'@'localhost' IDENTIFIED BY '<CONTRASEÑA>';
     FLUSH PRIVILEGES;
 Salir de mariadb:
     exit
