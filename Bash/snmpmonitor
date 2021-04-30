@@ -5,7 +5,7 @@ export PYTHONPATH=$PROYECT
 PATH="$PROYECT:$PATH"
 ROOT="$PROYECT/LuminariaSNMP"
 help(){
-    cat $PROYECT/Help/.help
+    cat $PROYECT/.Help/.help
     # echo "--add-interface       Añade interfaz al monitoreo (snmpmonitor --add <ip> <community>)"
     # echo "--add-rack            Añade rack"
     # echo "--available-pins      Muestra pines disponibles de la RPi"

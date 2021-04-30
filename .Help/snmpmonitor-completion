@@ -7,7 +7,7 @@ _snmpmonitor_completions()
   fi
 
   local IFS=$'\n'
-  local suggestions=($(compgen -W "$(cat /home/pi/Documents/.Hidden/Help/.help | sed 's/\t//')" -- "${COMP_WORDS[1]}"))
+  local suggestions=($(compgen -W "$(cat /home/pi/Documents/.Hidden/.Help/.help | sed 's/\t//')" -- "${COMP_WORDS[1]}"))
 
   if [ "${#suggestions[@]}" == "1" ]; then
     local number="${suggestions[0]/%\ */}"

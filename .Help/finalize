@@ -1,8 +1,8 @@
-
+#!/bin/bash
 rm -rf .git*
 rm -rf instalation
 rm -rf SQL
-rm Help/obfuscate
-rm Help/snmpmonitor-completion
+rm .Help/obfuscate
+rm .Help/snmpmonitor-completion
 rm README
 exec rm -- "$0"

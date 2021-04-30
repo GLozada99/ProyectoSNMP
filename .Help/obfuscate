@@ -1,3 +1,4 @@
+#!/bin/bash
 cp -r $1 "SNMP"
 pyconcrete-admin.py compile --source="SNMP" --pye
 find SNMP -name "*.py" -type f -delete
