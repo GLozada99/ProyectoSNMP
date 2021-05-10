@@ -227,13 +227,11 @@ class Daemon(object):
 
     def is_running(self):
         pid = self.get_pid()
-        
-        #tim  = time.strftime(time.ctime(os.path.getctime(f"/proc/{pid}")))
         if pid is None:
             self.log('Proceso detenido')
             return False
         elif os.path.exists('/proc/%d' % pid):
-            tim = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(os.path.getctime(f"/proc/{pid}")))
+            tim = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(os.path.getmtime(f"/proc/{pid}")))
             self.log(f'Proceso (pid {pid}) se encuentra activo desde {tim}')
             return True
         else:
