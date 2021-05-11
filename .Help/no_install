@@ -10,3 +10,5 @@ sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" .Help/snmpmonitor-completion
 sudo sed -i "s+mibs :+#mibs :+" /etc/snmp/snmp.conf
 sudo cp .Help/snmpmonitor-completion /etc/bash_completion.d/
 rm -rf ../ProyectoSNMP
+
+echo "Elimine el directorio SNMP anterior y mueva el SNMP nuevo a donde este se encontraba"
