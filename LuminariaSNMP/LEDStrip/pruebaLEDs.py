@@ -31,6 +31,7 @@ try:
             strip.start_pwm()
             strip.change_duty(0,0,0)
             while True:
+                print('Escriba los valores de intensidad de cada color del 0 al 100 en formato [R G B]:')
                 r,g,b = [int(x) for x in input().split()]
                 strip.change_duty(r,g,b)
         else:
