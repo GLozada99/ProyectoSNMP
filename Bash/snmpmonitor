@@ -52,6 +52,9 @@ case $1 in
     "--log")
         $EXECUTE $ROOT/Logs/log.py
     ;;
+    "--led-calibration")
+        $EXECUTE $ROOT/LEDStrip/pruebaLEDs.py
+    ;;
     "--racks")
         $EXECUTE $ROOT/Racks/active.py
     ;;
@@ -71,11 +74,9 @@ case $1 in
         $EXECUTE $ROOT/Interfaces/start.py running
     ;;
     "--stop")
-        $EXECUTE $ROOT/Interfaces/start.py stop
-        
+        $EXECUTE $ROOT/Interfaces/start.py stop 
     ;;
     *)
         help
-        
     ;;
 esac

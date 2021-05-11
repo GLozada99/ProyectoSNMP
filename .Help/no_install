@@ -1,0 +1,12 @@
+cd ..
+ProyectoSNMP/.Help/obfuscate ProyectoSNMP
+cd SNMP
+printf $"export PATH=\$PATH:$(pwd)/Bash\n" >> ~/.profile
+sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Bash/snmpmonitor
+sed -i "s+/usr/bin/python3.7+/usr/bin/pyconcrete+" Bash/snmpmonitor
+sed -i "s+\.py+\.pye+g" Bash/snmpmonitor
+sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" .Help/refactor
+sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" .Help/snmpmonitor-completion
+sudo sed -i "s+mibs :+#mibs :+" /etc/snmp/snmp.conf
+sudo cp .Help/snmpmonitor-completion /etc/bash_completion.d/
+rm -rf ../ProyectoSNMP
