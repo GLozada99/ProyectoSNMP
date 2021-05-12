@@ -234,7 +234,7 @@ class Daemon(object):
             return False
         elif os.path.exists('/proc/%d' % pid):
             #tim = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(os.path.getmtime(f"/proc/{pid}")))
-            tim = open(self.pidfile, 'r').read().strip()
+            tim = open(self.date_start, 'r').read().strip()
             self.log(f'Proceso (pid {pid}) se encuentra activo desde {tim}')
             return True
         else:
