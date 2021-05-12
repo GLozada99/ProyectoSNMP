@@ -49,6 +49,7 @@ class Daemon(object):
         self.daemon_alive = True
         self.use_gevent = use_gevent
         self.use_eventlet = use_eventlet
+        self.date_start = date_start
 
     def log(self, *args):
         if self.verbose >= 1:
