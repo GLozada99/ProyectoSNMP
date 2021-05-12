@@ -2,4 +2,5 @@
 sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Bash/snmpmonitor
 sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" .Help/snmpmonitor-completion
 sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" .Help/refactor
+sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" .Help/no_install
 sudo cp .Help/snmpmonitor-completion /etc/bash_completion.d/
