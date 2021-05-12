@@ -1,7 +1,6 @@
 cd ..
 ProyectoSNMP/.Help/obfuscate ProyectoSNMP
 cd SNMP
-printf $"export PATH=\$PATH:$(pwd)/Bash\n" >> ~/.profile
 sed -i "s+/home/pi/Documents/.Hidden+$(pwd)+" Bash/snmpmonitor
 sed -i "s+/usr/bin/python3.7+/usr/bin/pyconcrete+" Bash/snmpmonitor
 sed -i "s+\.py+\.pye+g" Bash/snmpmonitor
