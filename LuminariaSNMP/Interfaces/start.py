@@ -70,7 +70,7 @@ class Monitor(Daemon):
             db.close()
 
 if __name__ == '__main__':
-    monitor = Monitor('/tmp/monitor.pid',stdout='/tmp/snmpmonitor_log')
+    monitor = Monitor('/tmp/monitor.pid','/tmp/monitor.date',stdout='/tmp/monitor.log')
     if sys.argv[1] == 'start':
             monitor.start()
     elif sys.argv[1] == 'stop':

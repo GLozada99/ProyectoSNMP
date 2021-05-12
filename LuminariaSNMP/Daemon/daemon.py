@@ -35,10 +35,10 @@ class Daemon(object):
     A generic daemon class.
     Usage: subclass the Daemon class and override the run() method
     """
-    def __init__(self, pidfile, stdin=os.devnull,
+    def __init__(self, pidfile, date_start, stdin=os.devnull,
                  stdout=os.devnull, stderr=os.devnull,
                  home_dir='.', umask=0o22, verbose=1,
-                 use_gevent=False, use_eventlet=False):
+                 use_gevent=False, use_eventlet=False, ):
         self.stdin = stdin
         self.stdout = stdout
         self.stderr = stderr
@@ -127,6 +127,7 @@ class Daemon(object):
             self.delpid)  # Make sure pid file is removed if we quit
         pid = str(os.getpid())
         open(self.pidfile, 'w+').write("%s\n" % pid)
+        open(self.date_start, 'w').write("%s\n" % time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
     def delpid(self):
         try:
@@ -134,6 +135,7 @@ class Daemon(object):
             pid = int(open(self.pidfile, 'r').read().strip())
             if pid == os.getpid():
                 os.remove(self.pidfile)
+                os.remove(self.date_start)
         except OSError as e:
             if e.errno == errno.ENOENT:
                 pass
@@ -231,7 +233,8 @@ class Daemon(object):
             self.log('Proceso detenido')
             return False
         elif os.path.exists('/proc/%d' % pid):
-            tim = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(os.path.getmtime(f"/proc/{pid}")))
+            #tim = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(os.path.getmtime(f"/proc/{pid}")))
+            tim = open(self.pidfile, 'r').read().strip()
             self.log(f'Proceso (pid {pid}) se encuentra activo desde {tim}')
             return True
         else:
