@@ -34,8 +34,7 @@ try:
             table.rows.append([rack[0], rack[1], rack[3], rack[4], rack[5], rack[6]])
             print('Estos son los datos actuales:')
             print(table)
-            create_get_rack(False,rack) 
-            #db.delete_rack(racks[answer][0])
+            create_get_rack(False,rack)
             
     else:
         print('No existen racks')
@@ -43,5 +42,3 @@ except KeyboardInterrupt:
     pass
 finally:
     db.close()
-
-#print(f'La interfaz es {interface}')
