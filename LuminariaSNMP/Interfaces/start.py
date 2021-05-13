@@ -35,7 +35,6 @@ class Monitor(Daemon):
             while interfaces:
                 for ip, interface, community, rack, oid_num in interfaces:
                     status = get_status(ip, community, oid_num)
-                    #print(ip, community, status)
                     try:
                         if not status:
                             strip_lis[rack].error()

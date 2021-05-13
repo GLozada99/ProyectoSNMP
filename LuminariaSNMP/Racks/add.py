@@ -12,7 +12,7 @@ def create_get_rack(choose: bool, current_rack=None):
             
             answer = ''
             response = ''  
-            while type(answer) == str:
+             while type(answer) != int:
                 if racks:
                     answer = input('Seleccione el número del rack en el que se encuentra el equipo. Si desea agregar un rack, ingrese "-1".')
 

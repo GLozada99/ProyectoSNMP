@@ -4,10 +4,7 @@ from os import environ
 
 try:
     db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'SNMPdata')
-
     interfaces = db.get_interfaces()
-
-
     table = BeautifulTable()
     table.columns.header = ['Indice', 'IP', 'Interfaz', 'Community', 'Rack/Gabinete']
     for i,interface in enumerate(interfaces): 
@@ -17,7 +14,7 @@ try:
 
     answer = ''
     if interfaces:
-        while type(answer) == str:
+         while type(answer) != int:
             answer = input('Seleccione el índice de la interfaz a borrar:').strip()
             try:
                 answer = int(answer)

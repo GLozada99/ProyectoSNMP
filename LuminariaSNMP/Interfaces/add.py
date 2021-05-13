@@ -4,7 +4,6 @@ from LuminariaSNMP.Database.DB import Database_Controler
 from LuminariaSNMP.Interfaces.status import walk
 from LuminariaSNMP.Racks.add import create_get_rack
 
-
 try:
     db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'SNMPdata')
     if len(sys.argv) == 3:
@@ -21,7 +20,7 @@ try:
                     pass
 
             answer = ''
-            while type(answer) == str:
+             while type(answer) != int:
                 answer = input('Seleccione el número de la interfaz a monitorear:').strip()
                 try:
                     answer = int(answer)
@@ -33,7 +32,6 @@ try:
             except IndexError as e:
                 print(f'Numero incorrecto: {e}')
             
-            
             ID, info = create_get_rack(True)    
             if ID is None or info is None:
                 raise KeyboardInterrupt
@@ -44,7 +42,7 @@ try:
         else:
             print('No se recibe respuesta SNMP, esto puede ser debido a:\nLa IP y/o el Community no son los correctos\nEl equipo no puede ser alcanzado',)
     else:
-        print('Para añadir una interfaz a monitorear, ejecute el programa con los parametros: ip y community del equipo de interés.\nEj: snmpmonitor --add 10.0.0.1 public')
+        print('Para añadir una interfaz a monitorear, ejecute el programa con los parametros: ip y community del equipo de interés.\nEj: snmpmonitor --add-interface 10.0.0.1 public')
 except KeyboardInterrupt:
     print('Proceso abortado')
 finally:
