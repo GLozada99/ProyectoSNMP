@@ -20,7 +20,7 @@ try:
                     pass
 
             answer = ''
-             while type(answer) != int:
+            while type(answer) != int:
                 answer = input('Seleccione el número de la interfaz a monitorear:').strip()
                 try:
                     answer = int(answer)
