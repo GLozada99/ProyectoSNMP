@@ -17,7 +17,7 @@ print(table)
 answer = ''
 try:
     if racks:
-         while type(answer) != int:
+        while type(answer) != int:
             answer = input('Seleccione el índice del rack a editar:')
             try:
                 answer = int(answer)
