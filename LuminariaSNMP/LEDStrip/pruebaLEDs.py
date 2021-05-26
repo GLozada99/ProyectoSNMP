@@ -42,6 +42,7 @@ try:
 except KeyboardInterrupt:
     print('Prueba terminada')
 finally:
+    strip.off()
     db.close()
 
     
