@@ -18,7 +18,7 @@ class Monitor(Daemon):
 
             for _, name, _, r, g, b, d in racks:
                 strip = LED_Strip(r,g,b,d)
-                strip.start_pwm()
+                #strip.start_pwm()
                 strip_lis[name] = strip
                 strip.white()
 

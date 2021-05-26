@@ -28,17 +28,17 @@ try:
         if answer >= 0 and answer < len(racks):
             _,_,_,r,g,b,d = racks[answer]
             strip = LED_Strip(r,g,b,d)
-            strip.start_pwm()
-            strip.change_duty(0,0,0)
+            #strip.start_pwm()
+            strip.change_status(0,0,0)
             while True:
-                print('Escriba los valores de intensidad de cada color del 0 al 100 en formato [R G B]:')
+                print('Escriba 1 o 0 para encender o apagar cada color respectivamente en formato [R G B]:')
                 r,g,b = [int(x) for x in input().split()]
-                strip.change_duty(r,g,b)
+                strip.change_status(r,g,b)
         else:
             print('El rack seleccionado no existe')
             
     else:
-        print('No existen racks que eliminar')
+        print('No existen racks que probar')
 except KeyboardInterrupt:
     print('Prueba terminada')
 finally:
