@@ -28,7 +28,6 @@ try:
         if answer >= 0 and answer < len(racks):
             _,_,_,r,g,b,d = racks[answer]
             strip = LED_Strip(r,g,b,d)
-            #strip.start_pwm()
             strip.change_status(0,0,0)
             while True:
                 print('Escriba 1 o 0 para encender o apagar cada color respectivamente en formato [R G B]:')

@@ -123,6 +123,4 @@ class Database_Controler():
             sys.exit(1)
 
     def close(self):
-        #print(dir(self.connection))
-        #print(self.connection.ping())
         self.connection.close()
