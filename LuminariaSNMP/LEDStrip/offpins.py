@@ -17,6 +17,6 @@ def turn_off():
         GPIO.setup(rack[4], GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(rack[5], GPIO.OUT, initial=GPIO.LOW)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     turn_off()
 
