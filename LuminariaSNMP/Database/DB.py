@@ -98,9 +98,9 @@ class Database_Controler():
         (datetime.now().strftime('%Y-%m-%d %H:%M:%S'),ip,interface))
         self.connection.commit()
 
-    def get_log(self):
+    def get_log(self,cant):
         try:
-            self.cursor.execute('CALL get_log()')
+            self.cursor.execute('CALL get_log(?)',(cant,))
             return self.cursor.fetchall()
         except mariadb.Error as e:
             print(f'Error obteniendo log: {e}')
