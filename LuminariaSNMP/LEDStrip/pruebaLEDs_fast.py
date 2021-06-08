@@ -3,7 +3,7 @@ from LuminariaSNMP.LEDStrip.strip import LED_Strip
 from os import environ
 from LuminariaSNMP.Database.DB import Database_Controler
 from beautifultable import BeautifulTable 
-
+from time import sleep
 
 db = Database_Controler(environ.get('MARIADB_USER'),environ.get('MARIADB_PASSWORD'),'SNMPdata')
 
@@ -38,6 +38,8 @@ try:
                 for state in states:
                     r,g,b = state
                     strip.change_status(*state)
+                    sleep(0.5)
+
         else:
             print('El rack seleccionado no existe')
             
