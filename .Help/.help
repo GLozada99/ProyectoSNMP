@@ -7,6 +7,7 @@
 --help                  Muestra este mensaje
 --interfaces            Muestra las interfaces actuales en la lista de monitoreo y el rack donde se encuentran
 --led-calibration       Permite comprobar si los LEDs funcionan correctamente para un rack específico
+--led-calibration-fast  Permite comprobar si los LEDs funcionan correctamente para un rack específico, sin interacción del usuario
 --log                   Muestra las últimas 50 entradas del log
 --racks                 Muestra los racks guardados
 --remove-interface      Elimina interfaz del monitoreo

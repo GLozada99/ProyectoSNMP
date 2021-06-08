@@ -39,6 +39,9 @@ case $1 in
     "--led-calibration")
         $EXECUTE $ROOT/LEDStrip/pruebaLEDs.py
     ;;
+    "--led-calibration-fast")
+        $EXECUTE $ROOT/LEDStrip/pruebaLEDs_fast.py
+    ;;
     "--racks")
         $EXECUTE $ROOT/Racks/active.py
     ;;
