@@ -54,8 +54,7 @@ def create_get_rack(choose: bool, current_rack=None):
                         raise Exception
                 else:
                     bad_pins = None
-                    raise Exception
-                    
+                    raise Exception        
             else:
                 ID = None
                 info = None

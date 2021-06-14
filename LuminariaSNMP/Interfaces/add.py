@@ -31,7 +31,6 @@ try:
                 oid_num = interfaces[answer].split('STRING:')[0].split()[0].split('.')[-1].strip()
             except IndexError as e:
                 print(f'Numero incorrecto: {e}')
-            
             ID, info = create_get_rack(True)    
             if ID is None or info is None:
                 raise KeyboardInterrupt

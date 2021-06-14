@@ -19,7 +19,7 @@ class Database_Controler():
             print(f'Error al conectar a la base de datos: {e}')
             sys.exit(1)
     
-    def insert_interface(self,ip,interface,community,oid_num):
+    def insert_interface(self,ip,interface,community,oid_num) -> None:
         try:
             self.cursor.execute('CALL insert_interface(?, ?, ?, ?)',(ip,interface,community,oid_num))
             self.connection.commit()
@@ -31,8 +31,8 @@ class Database_Controler():
         try:
             self.cursor.execute('CALL insert_rack(?, ?, ?, ?, ?)',(information, R, G, B, D))
             self.cursor.execute('SELECT * FROM racks WHERE INFO = ?',(information,))
-            ID = self.cursor.fetchall()[0][0] 
-            self.connection.commit()    
+            ID = self.cursor.fetchall()[0][0]
+            self.connection.commit()
             return ID
         except mariadb.Error as e:
             print(f'Error al insertar rack: {e}')

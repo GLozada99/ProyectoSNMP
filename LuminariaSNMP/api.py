@@ -11,6 +11,6 @@ def home():
 
 @app.route('/Interfaces', methods=['GET'])
 def interfaces():
-    return json(funct.get_interfaces)
+    return json(funct.get_interfaces())
 
 app.run()
