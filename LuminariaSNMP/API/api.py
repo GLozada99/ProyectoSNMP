@@ -40,11 +40,12 @@ class Server(Daemon):
 
         @app.route('/insert/interface', methods=['POST'])
         def insert_interface():
-            ip =
-            interface =
-            community =
-            oid_num = 
-            fu.insert_interface(ip,interface,community,oid_num)         
+            # ip =
+            # interface =
+            # community =
+            # oid_num =
+            # fu.insert_interface(ip,interface,community,oid_num)   
+            pass      
 
         @app.route('/insert/rack', methods=['GET'])
         def down_interfaces():
