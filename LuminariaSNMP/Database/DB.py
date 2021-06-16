@@ -17,7 +17,6 @@ class Database_Controler():
             self.database = database
         except mariadb.Error as e:
             print(f'Error al conectar a la base de datos: {e}')
-            print(user,password,database)
             sys.exit(1)
     
     def insert_interface(self,ip,interface,community,oid_num) -> None:
