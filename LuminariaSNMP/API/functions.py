@@ -2,8 +2,8 @@ from os import environ
 from LuminariaSNMP.Database.DB import Database_Controler
 from LuminariaSNMP.Interfaces.status import walk
 
-_user = environ.get('MARIADB__user')
-_password = environ.get('MARIADB__password')
+_user = environ.get('MARIADB_USER')
+_password = environ.get('MARIADB_PASSWORD')
 _database = 'SNMPdata'
 
 def insert_interface(ip,interface,community,oid_num):
@@ -17,9 +17,7 @@ def insert_rack_get_id(info, R, G, B, D):
     db.close()
     return ID
 
-def insert_interface_new_rack(ip,interface,community,oid_num,info, R, G, B, D):
-    insert_interface(ip,interface,community,oid_num)
-    ID = insert_rack_get_id(info, R, G, B, D)
+def resolve_interface_rack(ip,interface,ID):
     db = Database_Controler(_user,_password,_database)
     db.resolve_rack_interface(ip,interface, ID)
     db.close()

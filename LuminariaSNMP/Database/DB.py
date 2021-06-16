@@ -17,6 +17,7 @@ class Database_Controler():
             self.database = database
         except mariadb.Error as e:
             print(f'Error al conectar a la base de datos: {e}')
+            print(user,password,database)
             sys.exit(1)
     
     def insert_interface(self,ip,interface,community,oid_num) -> None:
@@ -98,7 +99,7 @@ class Database_Controler():
         (datetime.now().strftime('%Y-%m-%d %H:%M:%S'),ip,interface))
         self.connection.commit()
 
-    def get_log(self,cant):
+    def get_log(self,cant=100):
         try:
             self.cursor.execute('CALL get_log(?)',(cant,))
             return self.cursor.fetchall()
