@@ -53,3 +53,14 @@ Agregar a cron la siguiente línea:
 Finalizar instalación
 
     .Help/finalize
+
+
+Para utilizar la herramienta, se utiliza el comando:
+    
+    snmpmonitor
+Usándolo con --help provee información de todas sus opciones:
+    
+    snmpmonitor --help
+
+Al agregar un rack, se utilizan los números de los pines que indican los colores de la cinta LED RGB. Para saber cuales pines usar, se tiene el pinout de la Raspberry Pi 4
+![Raspberry Pi 4 Pinout](https://github.com/GLozada99/ProyectoSNMP/blob/master/RPi4-Pinout.jpg)
