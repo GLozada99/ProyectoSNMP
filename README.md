@@ -63,4 +63,8 @@ Usándolo con --help provee información de todas sus opciones:
     snmpmonitor --help
 
 Al agregar un rack, se utilizan los números de los pines que indican los colores de la cinta LED RGB. Para saber cuales pines usar, se tiene el pinout de la Raspberry Pi 4
+
+
 ![Raspberry Pi 4 Pinout](https://github.com/GLozada99/ProyectoSNMP/blob/master/RPi4-Pinout.jpg)
+
+Los números a utilizar son los más cercanos al centro. Es decir, el que está descrito como GPIO 0 será designado como 11 en la aplicación, y el GPIO 4 será el 16.
