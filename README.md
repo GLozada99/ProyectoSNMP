@@ -1,6 +1,5 @@
 Todos los comandos serán introducidos desde el directorio raiz del proyecto
 Instalar todo lo necesario:
-
     ```
     sudo source instalation
     ```
