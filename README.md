@@ -1,14 +1,17 @@
 Todos los comandos serán introducidos desde el directorio raiz del proyecto
 Instalar todo lo necesario:
     ```
-    sudo source instalation```
+    sudo source instalation
+    ```
 Acceder a mariadb: 
     ```
-    sudo mysql -u root```
+    sudo mysql -u root
+    ```
 Crear usuario de MariaDB:
     ```
     CREATE USER IF NOT EXISTS '<USUARIO>'@'localhost';
-    SET PASSWORD FOR '<USUARIO>'@'localhost' = PASSWORD('<CONTRASEÑA>');```
+    SET PASSWORD FOR '<USUARIO>'@'localhost' = PASSWORD('<CONTRASEÑA>');
+    ```
 Dar privilegios al usuario:
     ```
     GRANT ALL PRIVILEGES ON *.* TO '<USUARIO>'@'localhost' IDENTIFIED BY '<CONTRASEÑA>';
